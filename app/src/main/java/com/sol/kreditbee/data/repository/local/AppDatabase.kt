@@ -5,15 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.sol.kreditbee.data.repository.local.albumdetail.AlbumDetail
+import com.sol.kreditbee.data.repository.local.albumdetail.AlbumDetailDao
 
 /**
  * The Room database for this app
  */
-@Database(entities = [Album::class],
+@Database(entities = [Album::class,AlbumDetail::class],
         version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun albumDao(): AlbumDao
+    abstract fun albumDetailDao(): AlbumDetailDao
 
     companion object {
 

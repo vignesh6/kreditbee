@@ -11,7 +11,6 @@ class AlbumStateAdapter(fm:FragmentManager,private  val albumList:List<Album>): 
     private var albumFragments = HashMap<String, Fragment>()
     override fun getItem(position: Int): Fragment {
         val album = albumList[position]
-
         return when {
             albumFragments.containsKey(album.title) -> albumFragments[album.title]!!
             else -> {
@@ -24,6 +23,6 @@ class AlbumStateAdapter(fm:FragmentManager,private  val albumList:List<Album>): 
     }
 
     override fun getCount(): Int {
-       return albumFragments.size
+       return albumList.size
     }
 }

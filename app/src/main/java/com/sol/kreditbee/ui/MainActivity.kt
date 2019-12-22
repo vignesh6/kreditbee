@@ -32,6 +32,7 @@ class MainActivity : BaseActivity() {
             when (result.status) {
                 Result.Status.SUCCESS -> {
                     Log.d("Albums ", "${Gson().toJson(result.data)}")
+                    if(result.data!!.size>0)
                     setUpTabsAndViewPager(result.data)
                     //  binding.progressBar.hide()
                     //result.data?.let { bindView(binding, it) }
@@ -50,11 +51,13 @@ class MainActivity : BaseActivity() {
 
     private fun setUpTabsAndViewPager(data: List<Album>?) {
         for (i in 0 until data!!.size) {
-            tabs.addTab(tabs.newTab().setText(data[i].title))
+            tabs.addTab(tabs.newTab().setText(data!![i].title))
         }
-        val viewPagerAdapter = AlbumStateAdapter(supportFragmentManager, data)
+        val viewPagerAdapter = AlbumStateAdapter(supportFragmentManager, data!!)
         viewpager_main.adapter = viewPagerAdapter
-        viewpager_main.offscreenPageLimit = 5
+        viewpager_main.offscreenPageLimit = 1
+        //tabs.setupWithViewPager(viewpager_main)
         viewpager_main.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewpager_main))
     }
 }

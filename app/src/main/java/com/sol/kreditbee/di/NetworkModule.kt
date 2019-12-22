@@ -7,6 +7,8 @@ import com.sol.kreditbee.BuildConfig
 import com.sol.kreditbee.api.ApiInterface
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -64,7 +66,9 @@ class NetworkModule {
             .addConverterFactory(converterFactory)
             .build()
     }
-
+    @CoroutineScropeIO
+    @Provides
+    fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
     private fun <T> provideService(okhttpClient: OkHttpClient,
                                    converterFactory: GsonConverterFactory, clazz: Class<T>): T {
         return createRetrofit(okhttpClient, converterFactory).create(clazz)

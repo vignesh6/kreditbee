@@ -15,4 +15,8 @@ class DataModule {
     @Singleton
     @Provides
     fun provideAlbumDao(db: AppDatabase) = db.albumDao()
+
+    @Singleton
+    @Provides
+    fun provideAlbumDetailDao(db: AppDatabase) = db.albumDetailDao()
 }

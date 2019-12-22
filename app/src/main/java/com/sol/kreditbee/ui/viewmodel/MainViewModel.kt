@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.sol.kreditbee.api.ApiInterface
 import com.sol.kreditbee.data.repository.AlbumRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ class MainViewModel @Inject constructor(private val apiInterface: ApiInterface,p
         val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
             Log.e("ALbum","$exception")
         }
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
             val albums = apiInterface.getPhotosByAlbumId(1)
             Log.d("Albums ","${albums.toString()}")
         }

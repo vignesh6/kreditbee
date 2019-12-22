@@ -12,8 +12,8 @@ interface AlbumDao {
     fun getAlbums(): LiveData<List<Album>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(legoSets: List<Album>)
+    suspend fun insertAll(albums: List<Album>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(legoSet: Album)
+    suspend fun insert(album: Album)
 }
