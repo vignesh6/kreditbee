@@ -100,8 +100,6 @@ class AlbumDetailsFragment : Fragment(), Injectable {
                              binding.progressBar.hide()
                             adapter.submitList(it)
                         }
-
-                    //result.data?.let { bindView(binding, it) }
                 }
                 Result.Status.LOADING -> {
                     binding.progressBar.show()

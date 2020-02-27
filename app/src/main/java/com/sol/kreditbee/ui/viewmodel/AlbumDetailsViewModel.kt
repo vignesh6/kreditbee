@@ -20,7 +20,6 @@ class AlbumDetailsViewModel @Inject constructor(private val apiInterface: ApiInt
 ) : ViewModel() {
     var connectivityAvailable: Boolean = false
     var albumId: Int? = null
-    var _albumDetailState:MutableLiveData<Result<List<AlbumDetail>>>  = MutableLiveData()
     val getAlbumsDetailsById by lazy {
        repository.observeAlbumsById(albumId)
 

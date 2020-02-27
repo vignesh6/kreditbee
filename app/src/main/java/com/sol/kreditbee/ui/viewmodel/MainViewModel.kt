@@ -11,15 +11,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val apiInterface: ApiInterface,private val albumRepository: AlbumRepository) :ViewModel() {
-    fun getAlbums() {
-        val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-            Log.e("ALbum","$exception")
-        }
-        viewModelScope.launch(Dispatchers.IO + coroutineExceptionHandler) {
-            val albums = apiInterface.getPhotosByAlbumId(1)
-            Log.d("Albums ","${albums.toString()}")
-        }
-    }
 
     val getAlbums by lazy { albumRepository.observeAlbums() }
 }
